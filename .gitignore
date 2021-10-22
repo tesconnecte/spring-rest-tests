@@ -1,53 +1,61 @@
-syntax: glob
-
-# Compiled source #
-###################
+#############################
+# MAVEN
+#############################
 target/
-bin/
-*.class
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+release.properties
+dependency-reduced-pom.xml
+buildNumber.properties
+.mvn/
 
-# Packages #
-############
-MANIFEST.MF
-*.jar
-*.war
-*.ear
-*.7z
-*.dmg
-*.gz
-*.iso
-*.jar
-*.rar
-*.tar
-*.zip
-
-# IDE Config #
-##############
-.classpath
-.project
-.metadata
-.includepath
-.settings/
-*.iml
-*.ipr
-*.iws
+#############################
+# IntelliJ Idea
+#############################
 .idea/
-.pmd
-.checkstyle
+*.iml
+*.iws
+*.ipr
 
-# Log #
-#######
+#############################
+# Eclipse
+#############################
+.project
+.classpath
+.settings/
+.metadata
+bin/
+tmp/
+*.tmp
+*.bak
+*.swp
+*~.nib
+local.properties
+.loadpath
+.recommenders
+.factorypath
+.apt_generated/
+.apt_generated_test/
+
+#############################
+# VSCode
+#############################
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+*.code-workspace
+.history/
+
+#############################
+# Other
+#############################
+application-local.yml
+*.class
 *.log
-log/
-logContent/
-
-# TestNG #
-##########
-testng.xml
-test-output/
-
-# OS generated files #
-######################
 Thumbs.db
 ehthumbs.db
 Desktop.ini
@@ -57,12 +65,3 @@ Icon?
 ._*
 .Trashes
 $RECYCLE.BIN/
-
-# Versioning #
-#############
-*.orig
-CVS/
-
-# OTHER #
-#########
-*rebel.xml

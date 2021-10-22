@@ -1,11 +1,10 @@
 spring:
-  application:
-    name: recruitment
+    application:
+        name: recruitment
 
 server:
-  port: 8080
-  context-path: /api
-  
+    port: 8080
+
 logging:
-  level:
-    com.test.recruitment=DEBUG
+    level:
+        com.test.recruitment: DEBUG
