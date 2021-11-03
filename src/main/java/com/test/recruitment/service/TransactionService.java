@@ -2,13 +2,13 @@ package com.test.recruitment.service;
 
 import com.test.recruitment.dao.TransactionRepository;
 import com.test.recruitment.entity.Transaction;
-import com.test.recruitment.exception.ServiceException;
-import com.test.recruitment.json.ErrorCode;
+import com.test.recruitment.exception.CustomHttpException;
 import com.test.recruitment.json.TransactionResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import java.util.stream.Collectors;
@@ -40,7 +40,7 @@ public class TransactionService {
     public Page<TransactionResponse> getTransactionsByAccount(String accountId, Pageable pageable) {
 
         if (!accountService.isAccountExist(accountId)) {
-            throw new ServiceException(ErrorCode.NOT_FOUND_ACCOUNT, "Account doesn't exist");
+            throw new CustomHttpException(HttpStatus.NOT_FOUND, "Account doesn't exist");
         }
 
         return new PageImpl<>(transactionRepository.getTransactionsByAccount(accountId, pageable)

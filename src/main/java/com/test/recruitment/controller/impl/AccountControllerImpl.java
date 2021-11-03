@@ -1,25 +1,27 @@
 package com.test.recruitment.controller.impl;
 
 import com.test.recruitment.controller.AccountController;
+import com.test.recruitment.exception.CustomHttpException;
 import com.test.recruitment.json.AccountDetailsResponse;
 import com.test.recruitment.json.AccountResponse;
 import com.test.recruitment.service.AccountService;
-import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
  * Implementation of {@link AccountController}
  */
-@Slf4j
 @RestController
 public class AccountControllerImpl implements AccountController {
 
     private final AccountService accountService;
+
+    private final Logger log = LoggerFactory.getLogger(this.getClass());
 
     @Autowired
     public AccountControllerImpl(AccountService accountService) {
@@ -27,21 +29,21 @@ public class AccountControllerImpl implements AccountController {
     }
 
     @Override
-    public ResponseEntity<Page<AccountResponse>> getAccounts(Pageable pageable) {
+    public Page<AccountResponse> getAccounts(Pageable pageable) {
 
         Page<AccountResponse> page = accountService.getAccounts(pageable);
 
         if (null == page || page.getTotalElements() == 0) {
             log.debug("Cannot find account");
-            return ResponseEntity.status(HttpStatus.NO_CONTENT).body(null);
+            throw new CustomHttpException(HttpStatus.NO_CONTENT);
         }
 
-        return ResponseEntity.ok().body(page);
+        return page;
     }
 
     @Override
-    public ResponseEntity<AccountDetailsResponse> getAccountDetails(String accountId) {
-        return ResponseEntity.ok().body(accountService.getAccountDetails(accountId));
+    public AccountDetailsResponse getAccountDetails(String accountId) {
+        return accountService.getAccountDetails(accountId);
     }
 
 }

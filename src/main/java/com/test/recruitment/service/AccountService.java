@@ -2,15 +2,16 @@ package com.test.recruitment.service;
 
 import com.test.recruitment.dao.AccountRepository;
 import com.test.recruitment.entity.Account;
-import com.test.recruitment.exception.ServiceException;
+import com.test.recruitment.exception.CustomHttpException;
 import com.test.recruitment.json.AccountDetailsResponse;
 import com.test.recruitment.json.AccountResponse;
-import com.test.recruitment.json.ErrorCode;
-import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import java.util.stream.Collectors;
@@ -18,11 +19,12 @@ import java.util.stream.Collectors;
 /**
  * Account service
  */
-@Slf4j
 @Service
 public class AccountService {
 
     private final AccountRepository accountRepository;
+
+    private final Logger log = LoggerFactory.getLogger(this.getClass());
 
     @Autowired
     public AccountService(AccountRepository accountRepository) {
@@ -64,7 +66,7 @@ public class AccountService {
         log.debug("Find account {}", accountId);
 
         Account account = accountRepository.findById(accountId)
-            .orElseThrow(() -> new ServiceException(ErrorCode.NOT_FOUND_ACCOUNT, "Account doesn't exist"));
+            .orElseThrow(() -> new CustomHttpException(HttpStatus.NOT_FOUND, "Account doesn't exist"));
 
         return mapToAccountDetailsResponse(account);
     }

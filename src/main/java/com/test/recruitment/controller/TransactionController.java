@@ -4,7 +4,6 @@ import com.test.recruitment.json.TransactionResponse;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,6 +22,6 @@ public interface TransactionController {
      * @return the transaction list
      */
     @GetMapping
-    ResponseEntity<Page<TransactionResponse>> getTransactionsByAccount(@PathVariable String accountId, @PageableDefault Pageable pageable);
+    Page<TransactionResponse> getTransactionsByAccount(@PathVariable String accountId, @PageableDefault Pageable pageable);
 
 }

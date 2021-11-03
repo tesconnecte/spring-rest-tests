@@ -23,14 +23,13 @@ List of prerequisites to realize the test:
 * On your PC, you must have :
    * _Maven_ installed (Version __3.x__)
    * _Git_ Installed (Version __2.x__) 
-   * _JAVA JDK_ installed (Version __8__)
+   * _JAVA JDK_ installed (Version __11__)
    * _JAVA IDE_ installed (__Eclipse__ / __IntelliJ IDEA__ / …)
    * _REST Client tool_ to make HTTP Requests 
      * _Chrome_ Extension (Postman - REST Client shortcut / Sense (Beta))
      * Postman
      * CLI (curl / httpie)
      * …
-   * [Lombok](https://projectlombok.org/) setup on your IDE (usually done through a plugin)
 
 ## <a name="eval"></a>Evaluation
 ### <a name="criteria"></a>Criteria

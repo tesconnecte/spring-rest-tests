@@ -34,7 +34,7 @@ public class AccountTest extends AbstractTest {
     public void getAccountDetailsOnNonExistingAccount() throws Exception {
         mockMvc.perform(get("/accounts/test"))
             .andExpect(status().isNotFound())
-            .andExpect(jsonPath("$.errorCode", is("NOT_FOUND_ACCOUNT")));
+            .andExpect(jsonPath("$.errorCode", is("NOT_FOUND")));
     }
 
 }

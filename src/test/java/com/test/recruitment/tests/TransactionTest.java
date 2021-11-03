@@ -28,10 +28,10 @@ public class TransactionTest extends AbstractTest {
     }
 
     @Test
-    public void getTransactionsOnUnexistingAccount() throws Exception {
+    public void getTransactionsOnNonExistingAccount() throws Exception {
         mockMvc.perform(get("/accounts/3/transactions"))
             .andExpect(status().isNotFound())
-            .andExpect(jsonPath("$.errorCode", is("NOT_FOUND_ACCOUNT")));
+            .andExpect(jsonPath("$.errorCode", is("NOT_FOUND")));
     }
 
 }
