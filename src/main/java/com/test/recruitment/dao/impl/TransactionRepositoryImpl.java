@@ -58,12 +58,23 @@ public class TransactionRepositoryImpl implements TransactionRepository, Initial
             .filter(transaction -> transaction.getId().equals(id))
             .findFirst().orElse(null);
     }
+    
+    
 
     @Override
     public Page<Transaction> getTransactionsByAccount(String accountId, Pageable pageable) {
         return new PageImpl<>(transactions.stream()
             .filter(t -> t.getAccountId().equals(accountId))
             .collect(Collectors.toList()));
+    }
+
+    @Override
+    public Transaction removeTransactionById(String id) {
+        Transaction transactionToDelete = this.findById(id);
+        if(transactionToDelete != null){
+            this.transactions.remove(transactionToDelete);
+        }        
+        return transactionToDelete;
     }
 
 }

@@ -40,4 +40,10 @@ public class TransactionControllerImpl implements TransactionController {
         return page;
     }
 
+    @Override
+    public TransactionResponse removeTransactionById(String transactionId) {
+        return transactionService.removeAccountTransactionById(transactionId);
+    }
+
+
 }

@@ -12,6 +12,7 @@ import java.util.Objects;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 /**
@@ -87,19 +88,19 @@ public class AdminTransactionTest extends AbstractTest {
 
     @Test
     public void deleteTransaction() throws Exception {
-        mockMvc.perform(delete("/accounts/1/transactions/1"))
+        mockMvc.perform(get("/accounts/1/transactions/remove/1"))
                 .andExpect(status().isNoContent());
     }
 
     @Test
     public void deleteTransactionNotBelongingToTheAccount() throws Exception {
-        mockMvc.perform(delete("/accounts/2/transactions/2"))
+        mockMvc.perform(get("/accounts/2/transactions/remove/1"))
                 .andExpect(status().isForbidden());
     }
 
     @Test
     public void deleteNonExistingTransaction() throws Exception {
-        mockMvc.perform(delete("/accounts/1/transactions/99"))
+        mockMvc.perform(get("/accounts/1/transactions/99"))
                 .andExpect(status().isNotFound());
     }
 

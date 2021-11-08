@@ -24,4 +24,9 @@ public interface TransactionController {
     @GetMapping
     Page<TransactionResponse> getTransactionsByAccount(@PathVariable String accountId, @PageableDefault Pageable pageable);
 
+    @GetMapping("/remove/{transactionId}")
+    TransactionResponse removeTransactionById(@PathVariable String transactionId);
+    
+    
+
 }

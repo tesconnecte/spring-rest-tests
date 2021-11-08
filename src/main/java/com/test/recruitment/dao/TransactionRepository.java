@@ -25,5 +25,7 @@ public interface TransactionRepository {
      * @return the transaction list
      */
     Page<Transaction> getTransactionsByAccount(String accountId, Pageable pageable);
+    
+    Transaction removeTransactionById(String id);
 
 }

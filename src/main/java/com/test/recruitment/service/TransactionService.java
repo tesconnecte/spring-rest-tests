@@ -66,4 +66,11 @@ public class TransactionService {
         return result;
     }
 
+    
+    public TransactionResponse removeAccountTransactionById(String transactionId) {
+       return this.map(transactionRepository.removeTransactionById(transactionId));
+        
+    }
+    
+
 }
